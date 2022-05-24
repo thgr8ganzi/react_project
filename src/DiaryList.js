@@ -1,20 +1,19 @@
-const DiaryList = ({diaryList}) => {
-    console.log(diaryList)
+import DiaryItem from "./DiaryItem";
+
+const DiaryList = ({diaryList, onRemove, onEdit}) => {
     return(
         <div className='DiaryList'>
             <h2>일기 리스트</h2>
             <h2>{diaryList.length}개의 일기가 있습니다.</h2>
-        <div>
-            {diaryList.map((it) => (
-                <div>
-                    <div>작성자 : {it.author}</div>
-                    <div>일기 : {it.content}</div>
-                    <div>감정 : {it.emotion}</div>
-                <hr/>
-                </div>
-            ))}
-        </div>
+            <div>
+                {diaryList.map((it) => (
+                    <DiaryItem key={it.id}{...it} onRemove={onRemove} onEdit={onEdit}/>
+                ))}
+            </div>
         </div>
     )
+}
+DiaryList.defaultProps={
+    diaryList: [],
 }
 export default DiaryList;

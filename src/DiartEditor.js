@@ -1,6 +1,6 @@
 import {useRef,useState} from "react";
 
-const DiaryEditor = () => {
+const DiaryEditor = ({onCreate}) => {
 
     const authorInput = useRef();
     const contentInput = useRef();
@@ -10,7 +10,7 @@ const DiaryEditor = () => {
         content: '',
         emotion: 1,
     })
-    
+
     const handleChangeState = (e) => {
         setState({
             ...state,
@@ -26,6 +26,7 @@ const DiaryEditor = () => {
             contentInput.current.focus();
             return
         }
+        onCreate(state.author, state.content, state.emotion);
         alert('저장 성공!')
     }
 
